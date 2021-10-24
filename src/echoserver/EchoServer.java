@@ -32,10 +32,13 @@ public class EchoServer {
                     streamToSocket.write(i);
                     streamToSocket.flush();
 
-                    // is this block of code redundant?
+                    /* is this block of code redundant?
                     i = streamFromSocket.read();
                     streamToSocket.write(i);
-                    streamToSocket.flush();;
+                    streamToSocket.flush();
+
+                    This code is redundant. Wanted to comment out.
+                     */
                 }
 
                 client.shutdownOutput();

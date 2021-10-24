@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b183bb1-9bb2-496c-b394-57dcf01ac18b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/echoserver/EchoClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/echoserver/EchoClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/echoserver/EchoServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/echoserver/EchoServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +40,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1635095737550</updated>
-      <workItem from="1635095741029" duration="2715000" />
+      <workItem from="1635095741029" duration="2895000" />
     </task>
     <servers />
   </component>
