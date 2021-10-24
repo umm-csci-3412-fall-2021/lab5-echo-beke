@@ -30,6 +30,9 @@ public class EchoClient {
             InputStream streamFromSocket = socket.getInputStream();
             OutputStream streamToSocket = socket.getOutputStream();
 
+            // while loop that continuously reads one byte from stdin,
+            // writes one byte to socket, writes one byte from socket to
+            // stdout.
             while((i = keyboardReader.read()) != -1)
             {
                 streamToSocket.write(i);

@@ -25,11 +25,14 @@ public class EchoServer {
                 InputStream streamFromSocket = client.getInputStream();
                 OutputStream streamToSocket = client.getOutputStream();
 
+                // while loop that continuously reads one byte from
+                // the socket, and writes one byte to the socket.
                 while((i = streamFromSocket.read()) != -1)
                 {
                     streamToSocket.write(i);
                     streamToSocket.flush();
 
+                    // is this block of code redundant?
                     i = streamFromSocket.read();
                     streamToSocket.write(i);
                     streamToSocket.flush();;
@@ -39,6 +42,7 @@ public class EchoServer {
 
                 // Close the client socket since we're done.
                 client.close();
+
                 System.out.println("Client disconnected.");
             }
             // *Very* minimal error handling.
