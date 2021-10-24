@@ -1,5 +1,7 @@
 package echoserver;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -8,26 +10,36 @@ public class EchoServer {
     public static final int portNumber = 6013;
 
     public static void main(String[] args) {
+        int i;
         try {
             // Start listening on the specified port
             ServerSocket sock = new ServerSocket(portNumber);
-            System.out.println("Running!");
 
             // Run forever, which is common for server style services
             while (true) {
                 // Wait until someone connects, thereby requesting a date
                 Socket client = sock.accept();
-                System.out.println("Got a request!");
+                System.out.println("Client connected");
 
-                // Construct a writer so we can write to the socket, thereby
-                // sending something back to the client.
-                PrintWriter writer = new PrintWriter(client.getOutputStream(), true);
+                // socket streams
+                InputStream streamFromSocket = client.getInputStream();
+                OutputStream streamToSocket = client.getOutputStream();
 
-                // Send the current date back tothe client.
-                writer.println(new java.util.Date().toString());
+                while((i = streamFromSocket.read()) != -1)
+                {
+                    streamToSocket.write(i);
+                    streamToSocket.flush();
+
+                    i = streamFromSocket.read();
+                    streamToSocket.write(i);
+                    streamToSocket.flush();;
+                }
+
+                client.shutdownOutput();
 
                 // Close the client socket since we're done.
                 client.close();
+                System.out.println("Client disconnected.");
             }
             // *Very* minimal error handling.
         } catch (Exception ioe) {

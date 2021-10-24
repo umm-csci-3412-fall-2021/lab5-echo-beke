@@ -42,12 +42,6 @@ public class EchoClient {
 
             socket.shutdownOutput();
 
-//            while((i = streamFromSocket.read()) != -1)
-//            {
-//                output.write(i);
-//                output.flush();
-//            }
-
             // Close the socket when we're done reading from it
             socket.close();
 
