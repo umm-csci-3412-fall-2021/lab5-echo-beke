@@ -9,7 +9,7 @@ public class EchoClient {
 
     public static void main(String[] args) throws IOException {
         String server;
-        System.out.println("Running!");
+        int i;
 
         // Use "127.0.0.1", i.e., localhost, if no server is specified.
         if (args.length == 0) {
@@ -22,27 +22,31 @@ public class EchoClient {
             // Connect to the server
             Socket socket = new Socket(server, portNumber);
 
-            // Enter data using BufferReader
-            BufferedReader keyboardReader = new BufferedReader(
-                    new InputStreamReader(System.in));
+            // enter data using InputStreams
+            InputStream keyboardReader = System.in;
+            OutputStream output = System.out;
 
-            // Get the input stream so we can read from that socket
-            InputStream input = socket.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+            // socket streams
+            InputStream streamFromSocket = socket.getInputStream();
+            OutputStream streamToSocket = socket.getOutputStream();
 
-            String inputLine;
-            while ((inputLine = keyboardReader.readLine()) != null) {
-                PrintWriter out =                                            // 2nd statement
-                        new PrintWriter(socket.getOutputStream(), true);
+            while((i = keyboardReader.read()) != -1)
+            {
+                streamToSocket.write(i);
+                streamToSocket.flush();
 
-
-                // Print all the input we receive from the server
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
-                }
+                i = streamFromSocket.read();
+                output.write(i);
+                output.flush();;
             }
 
+            socket.shutdownOutput();
+
+//            while((i = streamFromSocket.read()) != -1)
+//            {
+//                output.write(i);
+//                output.flush();
+//            }
 
             // Close the socket when we're done reading from it
             socket.close();
