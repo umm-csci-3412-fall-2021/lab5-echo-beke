@@ -35,9 +35,11 @@ public class EchoClient {
             // stdout.
             while((i = keyboardReader.read()) != -1)
             {
+                // read one byte from stdin, and write to socket
                 streamToSocket.write(i);
                 streamToSocket.flush();
 
+                // read one byte from socket and write to stdout
                 i = streamFromSocket.read();
                 output.write(i);
                 output.flush();;

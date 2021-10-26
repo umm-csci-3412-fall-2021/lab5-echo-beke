@@ -28,7 +28,9 @@ public class EchoServer {
                 // while loop that continuously reads one byte from
                 // the socket, and writes one byte to the socket.
                 while((i = streamFromSocket.read()) != -1)
+                // read one byte from the socket
                 {
+                    // write one byte to the socket
                     streamToSocket.write(i);
                     streamToSocket.flush();
 
